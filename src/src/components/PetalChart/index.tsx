@@ -84,9 +84,9 @@ const PetalChart = ({
   };
 
   return (
-    <div>
+    <div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
       <svg ref={svgRef} width={width} height={height}></svg>
-      <button onClick={saveAsImage}>Save as Image</button>
+      <button onClick={saveAsImage}>画像を保存</button>
     </div>
   );
 };
