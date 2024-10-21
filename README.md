@@ -14,3 +14,7 @@ nvm ls-remote --lts
 # DL済みnodeバージョンを表示
 nvm ls
 ```
+
+```sh
+DEBUG=myexpressapp:* npm start
+```

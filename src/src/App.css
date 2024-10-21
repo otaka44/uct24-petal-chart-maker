@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   height: 100vh;
+  font-size: 12px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .leaflet-container {
@@ -21,12 +23,13 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 12px;
+  max-height: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px);
   color: white;
 }
 
@@ -50,12 +53,32 @@
 }
 
 .flexbox {
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.flexbox form {
+  /* width: 50%; */
+  padding: .5rem;
+  border-radius: .5rem;
+  min-width: 250px;
+  max-width: 80%;
+  background-color: #f5f5f5;  
+  opacity: 0.9;
+}
+
 .formarea {
   display: flex;
   justify-content: space-between;
+}
+
+.formarea label {
+  text-align: left; 
+  /* 左寄せ */
+  min-width: 100px;
+}
+.formarea input {
+  min-width: 100px;
 }

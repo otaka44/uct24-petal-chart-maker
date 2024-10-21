@@ -16,8 +16,8 @@ interface PetalChartProps {
 const PetalChart = ({
   data = [],
   score = 2,
-  width = 500,
-  height = 500,
+  width = 256,
+  height = 256,
 }: PetalChartProps) => {
   const svgRef = useRef(null);
 
