@@ -9,17 +9,18 @@ import PetalChart from "./components/PetalChart";
 
 import "./App.css";
 const sampleData = [
-  { value: 0, color: "#5087f7" },
+  { value: 2, color: "#5087f7" },
   { value: 2, color: "#5ba1e6" },
-  { value: 3, color: "#7ab4d1" },
-  { value: 4, color: "#a1d3e8" },
+  { value: 1, color: "#7ab4d1" },
+  { value: 2, color: "#a1d3e8" },
   { value: 1, color: "#ffcc66" },
-  { value: 4, color: "#ffb84d" },
+  { value: 2, color: "#ffb84d" },
   { value: 1, color: "#ff8e3d" },
-  { value: 4, color: "#ff6e61" },
+  { value: 2, color: "#ff6e61" },
 ];
 function App() {
   const [data, setData] = React.useState<Data[]>(sampleData);
+  const [score, setScore] = React.useState<number>(2)
   const [anshin, setAnshin] = React.useState<string>("2");
   const [seiketsu, setSeiketsu] = React.useState<string>("1");
   const [yutori, setYutori] = React.useState<string>("2");
@@ -88,6 +89,16 @@ function App() {
 
       <div className="flexbox">
         <form action="" method="post">
+        <div className="formarea">
+            <label>緩和／緊張度</label>
+            <input
+              type="number"
+              value={score}
+              min={-2}
+              max={2}
+              onChange={(e) => setScore(Number(e.target.value))}
+            ></input>
+          </div>
           <div className="formarea">
             <label>安心</label>
             <input
@@ -145,7 +156,7 @@ function App() {
             onClick={handleClickDraw}
           />
         </div>
-        <PetalChart data={data} />
+        <PetalChart data={data} score={score} />
       </div>
       {/* <MapContainer center={position} zoom={zoom}>
         <TileLayer

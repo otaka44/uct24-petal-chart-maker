@@ -8,12 +8,14 @@ interface Data {
 }
 interface PetalChartProps {
   data: Data[];
+  score?: number;
   width?: number;
   height?: number;
 }
 
 const PetalChart = ({
   data = [],
+  score = 2,
   width = 500,
   height = 500,
 }: PetalChartProps) => {
@@ -28,9 +30,9 @@ const PetalChart = ({
     svg.selectAll("*").remove(); // 再描画時に古い要素を削除
 
     // Petal Chart 描画ロジック
-    const radius = Math.min(width, height) / 10;
+    const radius = Math.min(width, height) / 6;
     const angleStep = (2 * Math.PI) / data.length;
-    const centerCircleRadius = 15;
+    const centerCircleRadius = 12;
     const zero_flag = (val: number) => (val === 0 ? 0 : 1);
 
     const petal = d3
@@ -41,6 +43,17 @@ const PetalChart = ({
       .endAngle((d: any, i: number) => (i + 1) * angleStep)
       .cornerRadius(100);
 
+    // 背景の円を描画
+    svg
+      .append("g")
+      .append("circle")
+      .attr("transform", `translate(${width / 2}, ${height / 2})`)
+      .attr("r", radius * (Math.abs(score) === 2 ? 2.6 : 2))
+      .attr("fill", score > 0 ? "#ff6e61" : "#5087f7")
+      .attr("opacity", 0.9 * (Math.abs(score) / 2 - Math.abs(score) / 3));
+    // .attr("stroke", "#fff")
+    // .attr("stroke-width", 4);
+
     svg
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`)
@@ -50,7 +63,7 @@ const PetalChart = ({
       .append("path")
       .attr("d", petal)
       .attr("fill", (d: any) => d.color)
-      .attr("opacity", 0.6)
+      .attr("opacity", 0.8)
       .attr("stroke", "#fff")
       .attr("stroke-width", 4);
 
@@ -59,8 +72,8 @@ const PetalChart = ({
       .append("circle")
       .attr("transform", `translate(${width / 2}, ${height / 2})`)
       .attr("r", centerCircleRadius)
-      .attr("fill", "#555")
-      .attr("opacity", 0.6)
+      .attr("fill", "#fff")
+      .attr("opacity", 0.95)
       .attr("stroke", "#fff")
       .attr("stroke-width", 4);
   }, [data, width, height]);
