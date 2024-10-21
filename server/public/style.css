@@ -1,0 +1,6 @@
+.tiledBackground {
+    background-image: url("./background.png");
+    background-size: 150%;
+    background-clip: none;
+    background-position: center;
+  }
